@@ -1,6 +1,5 @@
 from tkinter import *
-from tkinter import filedialog
-
+import Files_and_Exceptions
 
 # main gui window(visible) sits on gui controller(not visible)
 root = Tk()
@@ -35,5 +34,10 @@ status = Label(root, text=cur_status, bd='1', relief='sunken', anchor='w')
 status.pack(side='bottom', fill='x')
 
 
+'''Buttons'''
+
+
+
+'''Main loop for the program'''
 # main program loop
 root.mainloop()
