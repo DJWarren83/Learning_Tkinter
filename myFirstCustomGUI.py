@@ -19,7 +19,7 @@ file_menu = Menu(main_menu, tearoff=0)
 # makes a drop down File menu option
 main_menu.add_cascade(label='File', menu=file_menu)
 # Open File menu option in the File menu. Saves file path for manipulation later.
-cur_path = file_menu.add_command(label='Select File', command=lambda: get_file_path())
+cur_path = file_menu.add_command(label='Select File', command=App.set_cur_file_path)
 # adds a separator between menu options
 file_menu.add_separator()
 # close program
@@ -54,16 +54,13 @@ add_label.pack()
 add_entry = Entry(main, textvariable='test')
 add_entry.pack()
 # add_new_entry button
-add_button = Button(main, text='Submit', command=lambda: add_new_num(add_entry, cur_path))
+add_button = Button(main, text='Submit', command='')
 add_button.pack()
 
 # count_label displays the number of entries in the file
-cur_count = 'place holder'
-count_label = Label(main, text=cur_count)
+cur_count = App.cur_count
+count_label = Label(main, text=str(cur_count))
 count_label.pack()
-# recalculate current count
-cur_count_button = Button(main, text='Calculate Count', command=lambda: get_count(cur_path))
-cur_count_button.pack()
 
 
 '''Main loop for the program'''
