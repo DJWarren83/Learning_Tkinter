@@ -1,5 +1,5 @@
 from tkinter import *
-import Files_and_Exceptions
+from Files_and_Exceptions import *
 
 # main gui window(visible) sits on gui controller(not visible)
 root = Tk()
@@ -14,13 +14,13 @@ created and handled, as well as the Status bar along the bottom of the main prog
 main_menu = Menu(root)
 
 '''File Menu'''
-# dropdown menu from main menu
+# drop down menu from main menu
 file_menu = Menu(main_menu, tearoff=0)
 # makes a drop down File menu option
 main_menu.add_cascade(label='File', menu=file_menu)
 # Open File menu option in the File menu. Saves file path for manipulation later.
-file_path = file_menu.add_command(label='Open File', command='')
-# adds a seperator between menu options
+cur_path = file_menu.add_command(label='Select File', command=lambda: get_file_path())
+# adds a separator between menu options
 file_menu.add_separator()
 # close program
 file_menu.add_command(label='Exit', command=root.quit)
@@ -34,8 +34,36 @@ status = Label(root, text=cur_status, bd='1', relief='sunken', anchor='w')
 status.pack(side='bottom', fill='x')
 
 
-'''Buttons'''
+'''
+This section builds the main area of the gui where
+the user spends most of their time.
+'''
+# creates and places a new frame for the main area to built on.
+main = Frame(root)
+main.pack()
 
+
+# title line at top of main area
+title = Label(main, text='Functions and Exceptions')
+title.pack()
+
+# add_new_entry label
+add_label = Label(main, text='Add a new number to the file')
+add_label.pack()
+# add_new_entry entry field
+add_entry = Entry(main, textvariable='test')
+add_entry.pack()
+# add_new_entry button
+add_button = Button(main, text='Submit', command=lambda: add_new_num(add_entry, cur_path))
+add_button.pack()
+
+# count_label displays the number of entries in the file
+cur_count = 'place holder'
+count_label = Label(main, text=cur_count)
+count_label.pack()
+# recalculate current count
+cur_count_button = Button(main, text='Calculate Count', command=lambda: get_count(cur_path))
+cur_count_button.pack()
 
 
 '''Main loop for the program'''
